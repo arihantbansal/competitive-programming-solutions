@@ -5,32 +5,29 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.math.BigInteger;
 import java.util.StringTokenizer;
 
 /**
- * Author : Arihant Bansal
- * Date : 08-11-2020, Sunday
+ * @author : Arihant Bansal
+ * Date : 12-09-2021
  **/
-public class EOEO {
+
+public class BC106 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
-        
-        int c = Integer.parseInt(br.readLine().trim());
 
-        long ts, js, count, t;
-        for (int i = 0; i < c; i++) {
-            t = Long.parseLong(br.readLine().trim());
-            count = 0;
-            if (t % 2 == 0) {
-                long maxPowerOfTwo = (t & (~(t - 1)));
-                count = (long) (t / (maxPowerOfTwo * 2L));
-            } else {
-                count = Math.floorDiv(t, 2);
-            }
-            pw.println(count);
+        BigInteger sum = new BigInteger("0");
+
+        int n = Integer.parseInt(br.readLine().trim());
+        st = new StringTokenizer(br.readLine().trim());
+        for (int i = 0; i < n; i++) {
+            sum = sum.add(new BigInteger(st.nextToken()));
         }
+
+        pw.println(sum.toString());
 
         pw.flush();
         pw.close();

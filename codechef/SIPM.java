@@ -5,13 +5,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
- * Author : Arihant Bansal
- * Date : 12-09-2021, Sunday
+ * @author : Arihant Bansal
+ * Date : 12-09-2021
  **/
-public class J7 {
+
+public class SIPM {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out));
@@ -20,14 +23,21 @@ public class J7 {
         int t = Integer.parseInt(br.readLine().trim());
 
         for (int i = 0; i < t; i++) {
+            int n = Integer.parseInt(br.readLine().trim());
             st = new StringTokenizer(br.readLine().trim());
-            int p = Integer.parseInt(st.nextToken()), s = Integer.parseInt(st.nextToken());
 
-            double l = (p - Math.sqrt(Math.pow(p, 2) - (24.0 * s))) / 12.0;
-            double h = (p / 4.0) - (2.0 * l);
+            int pos = 0, neg = 0;
+            Set<Integer> distinctNumbers = new HashSet<Integer>();
+            for (int j = 0; j < n; j++) {
+                int num = Integer.parseInt(st.nextToken());
+                if (!distinctNumbers.contains(num)) {
+                    distinctNumbers.add(num);
+                    if (num > 0) pos += num;
+                    else neg += num;
+                }
+            }
 
-            double volume = Math.pow(l, 2) * h;
-            pw.println(String.format("%.2f", volume));
+            pw.println(String.format("%d %d", pos, neg));
         }
 
 

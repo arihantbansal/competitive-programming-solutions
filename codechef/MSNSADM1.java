@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
@@ -13,7 +12,7 @@ import java.util.StringTokenizer;
  * Date : 12-09-2021
  **/
 
-public class RAINBOWA {
+public class MSNSADM1 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out));
@@ -23,34 +22,23 @@ public class RAINBOWA {
 
         for (int i = 0; i < t; i++) {
             int n = Integer.parseInt(br.readLine().trim());
-            int[] arr = new int[n];
+
+            int[] a = new int[n], b = new int[n];
+            int max = 0, score;
+            st = new StringTokenizer(br.readLine().trim());
+            for (int j = 0; j < n; j++) {
+                a[j] = Integer.parseInt(st.nextToken());
+            }
 
             st = new StringTokenizer(br.readLine().trim());
             for (int j = 0; j < n; j++) {
-                arr[j] = Integer.parseInt(st.nextToken());
+                b[j] = Integer.parseInt(st.nextToken());
+                score = 20 * a[j] - 10 * b[j];
+                max = Math.max(score, max);
             }
-
-            int start = 0, end = n - 1;
-            boolean flag = false;
-            boolean[] allNums = new boolean[7];
-
-            while (start <= end) {
-                if (arr[start] != arr[end]) {
-                    flag = true;
-                    break;
-                }
-                if (arr[start] > 7 || arr[start] < 1) {
-                    flag = true;
-                    break;
-                } else {
-                    allNums[arr[start] - 1] = true;
-                }
-                start++;
-                end--;
-            }
-
-            pw.println(flag ? "no" : "yes");
+            pw.println(max);
         }
+
 
         pw.flush();
         pw.close();

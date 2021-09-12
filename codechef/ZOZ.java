@@ -8,10 +8,11 @@ import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 /**
- * Author : Arihant Bansal
- * Date : 12-09-2021, Sunday
+ * @author : Arihant Bansal
+ * Date : 12-09-2021
  **/
-public class J7 {
+
+public class ZOZ {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out));
@@ -21,13 +22,23 @@ public class J7 {
 
         for (int i = 0; i < t; i++) {
             st = new StringTokenizer(br.readLine().trim());
-            int p = Integer.parseInt(st.nextToken()), s = Integer.parseInt(st.nextToken());
+            int n = Integer.parseInt(st.nextToken()), k = Integer.parseInt(st.nextToken());
 
-            double l = (p - Math.sqrt(Math.pow(p, 2) - (24.0 * s))) / 12.0;
-            double h = (p / 4.0) - (2.0 * l);
+            int[] arr = new int[n];
+            long sum = 0;
+            st = new StringTokenizer(br.readLine().trim());
+            for (int j = 0; j < n; j++) {
+                arr[j] = Integer.parseInt(st.nextToken());
+                sum += arr[j];
+            }
 
-            double volume = Math.pow(l, 2) * h;
-            pw.println(String.format("%.2f", volume));
+            int validCount = 0;
+            for (int j = 0; j < n; j++) {
+                if ((arr[j] + k) > (sum - arr[j])) {
+                    validCount++;
+                }
+            }
+            pw.println(validCount);
         }
 
 
